@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "properties": {
+    "containerOptions": {
+      "type": "object",
+      "description": "根容器选项",
+      "properties": {
+        "style": {
+          "type": "object",
+          "description": "根容器样式"
+        }
+      }
+    },
+    "childOptions": {
+      "type": "object",
+      "description": "子容器选项",
+      "properties": {
+        "draggable": {
+          "type": "boolean",
+          "description": "是否可拖拽"
+        },
+        "animation": {
+          "type": "boolean",
+          "description": "是否打开动画"
+        } 
+      }
+    }
+  },
+  "additionalProperties": false
+}
