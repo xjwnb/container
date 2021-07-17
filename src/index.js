@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 10:32:44
- * @LastEditTime: 2021-07-16 22:40:53
+ * @LastEditTime: 2021-07-17 18:06:30
  * @LastEditors: Please set LastEditors
  * @Description: 入口文件
  * @FilePath: \containerjs\src\index.js
@@ -9,7 +9,7 @@
 
 import "./test.less";
 import { validateOptions } from "./options";
-import { isObject } from "./validate";
+import { isObject } from "./utils/validate";
 
 class ContainerJS {
   container = null;

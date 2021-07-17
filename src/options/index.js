@@ -1,14 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-07-15 22:45:39
- * @LastEditTime: 2021-07-17 01:40:55
+ * @LastEditTime: 2021-07-17 18:06:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \containerjs\src\options\index.js
  */
 import { validate } from "schema-utils";
 import shema from "./shema.json";
-import { isObject } from "../validate";
+import { isObject } from "../utils/validate";
 // 默认选项
 import { defaultOption } from "./options";
 
