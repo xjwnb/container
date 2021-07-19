@@ -1,14 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-07-15 22:45:39
- * @LastEditTime: 2021-07-17 18:06:03
+ * @LastEditTime: 2021-07-18 22:26:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \containerjs\src\options\index.js
  */
 import { validate } from "schema-utils";
 import shema from "./shema.json";
-import { isObject } from "../utils/validate";
+import { isObject, isFunc } from "../utils/validate";
 // 默认选项
 import { defaultOption } from "./options";
 
@@ -21,13 +21,6 @@ export function validateOptions(options = {}) {
   validate(shema, options, {
     name: "options",
   });
-  console.log("okk");
-
-  mergeOptions({
-    childOptions: {
-      animation: false,
-    },
-  });
 }
 
 /**
@@ -35,10 +28,6 @@ export function validateOptions(options = {}) {
  * @param {*} options 选项
  */
 export function mergeOptions(options = {}) {
-  // 最总选项
-  // const resultOption = Object.assign({}, defaultOption, options);
-  // console.log(resultOption);
-
   let opt = {};
   for (let key in defaultOption) {
     opt[key] = isObject(defaultOption[key])
@@ -47,5 +36,31 @@ export function mergeOptions(options = {}) {
         : { ...defaultOption[key] }
       : options[key] || defaultOption[key];
   }
-  console.log(opt);
+  return opt;
+}
+
+/**
+ * 初始化 container 容器样式
+ * @param {object} options
+ * @param {HTMLElement} containerDom
+ */
+export function initContainerStyle(options, containerDom) {
+  const { style } = options.containerOptions;
+  for (let key in style) {
+    containerDom.style[key] = style[key];
+  }
+}
+
+/**
+ * 初始化 container 容器样式
+ * @param {object} options
+ * @param {HTMLCollection} childDom
+ */
+export function initChildDomStyle(options, childDom) {
+  const { style } = options.childOptions;
+  for (let l = 0; l < childDom.length; l++) {
+    for (let key in style) {
+      childDom[l].style[key] = style[key];
+    }
+  }
 }

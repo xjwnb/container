@@ -7,7 +7,49 @@
       "properties": {
         "style": {
           "type": "object",
-          "description": "根容器样式"
+          "description": "根容器样式",
+          "properties": {
+            "width": {
+              "type": "string",
+              "description": "样式 width 属性，默认为 100%"
+            },
+            "padding": {
+              "type": "string",
+              "description": "样式 padding 属性，默认为 10px"
+            },
+            "background": {
+              "type": "string",
+              "description": "样式 background 属性，默认为 rgba(0, 0, 0, .6)"
+            },
+            "border": {
+              "type": "string",
+              "description": "样式 border 属性，默认为 ''"
+            },
+            "borderRadius": {
+              "type": "string",
+              "description": "样式 border-radius 属性，默认为 10px"
+            },
+            "boxSizing": {
+              "type": "string",
+              "description": "样式 box-sizing 属性，默认为 border-box"
+            },
+            "display": {
+              "type": "string",
+              "description": "样式 display 属性，默认为 grid"
+            },
+            "gridTemplateColumns": {
+              "type": "string",
+              "description": "样式 grid-template-columns 属性，默认为 repeat(auto-fill)"
+            },
+            "gridAutoFlow": {
+              "type": "string",
+              "description": "样式 grid-auto-flow 属性，默认为 row dense"
+            },
+            "gridGap": {
+              "type": "string",
+              "description": "样式 grid-gap 属性，默认为 20px 20px"
+            }
+          }
         }
       }
     },
@@ -15,14 +57,46 @@
       "type": "object",
       "description": "子容器选项",
       "properties": {
+        "style": {
+          "type": "object",
+          "description": "子容器样式",
+          "properties": {
+            "background": {
+              "type": "string",
+              "description": "样式 background，默认为 #ffffff"
+            },
+            "border": {
+              "type": "string",
+              "description": "样式 border 属性，默认为 ''"
+            },
+            "borderRadius": {
+              "type": "string",
+              "description": "样式 border-radius 属性，默认为 10px"
+            },
+            "boxSizing": {
+              "type": "string",
+              "description": "样式 box-sizing 属性，默认为 border-box"
+            }
+          }
+        },
         "draggable": {
           "type": "boolean",
-          "description": "是否可拖拽"
+          "description": "是否可拖拽，默认为 true"
         },
         "animation": {
           "type": "boolean",
-          "description": "是否打开动画"
-        } 
+          "description": "是否打开动画，默认为 true"
+        }
+      }
+    },
+    "lifeCycle": {
+      "type": "object",
+      "description": "生命周期",
+      "properties": {
+        "beforeCreate": {
+          "instanceof": "Function",
+          "description": "生命周期-初始化之前执行"
+        }
       }
     }
   },

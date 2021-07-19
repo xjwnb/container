@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 11:21:50
- * @LastEditTime: 2021-07-14 23:11:00
+ * @LastEditTime: 2021-07-18 21:43:07
  * @LastEditors: Please set LastEditors
  * @Description: webpack 基本公共配置
  * @FilePath: \containerjs\build\webpack.base.js
@@ -88,6 +88,10 @@ module.exports = {
         {
           from: path.resolve(rootDir, "public", "js"),
           to: path.resolve(rootDir, "dist", "js"),
+        },
+        {
+          from: path.resolve(rootDir, "public", "css"),
+          to: path.resolve(rootDir, "dist", "css"),
         },
       ],
     }),
