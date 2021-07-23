@@ -1,28 +1,97 @@
 <!--
  * @Author: your name
  * @Date: 2021-07-12 10:53:06
- * @LastEditTime: 2021-07-18 21:37:29
+ * @LastEditTime: 2021-07-20 18:06:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \containerjs\public\index.html
 -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="./css/base.css">
-</head>
-<body>
-  <!-- <img src="../assets/images/a.jpg" alt="?"> -->
-  <div id="container">
-    <div class="child">1</div>
-    <div class="child">2</div>
-    <div class="child">3</div>
-    <div class="child">4</div>
-    <div class="child">5</div>
-    <div class="child">6</div>
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/base.css" />
+  </head>
+  <body>
+    <!-- <img src="../assets/images/a.jpg" alt="?"> -->
+    <!--  -->
+    <div id="container">
+      <div class="child">1</div>
+      <div class="child">2</div>
+      <div class="child">3</div>
+      <div class="child">4</div>
+      <div class="child">5</div>
+      <div class="child">6</div>
+    </div>
+
+    <script>
+      const containerDom = document.getElementById("container");
+      containerDom.style.overflow = "hidden";
+      const body = document.body;
+      let target = null,
+        targetX = 0,
+        targetY = 0;
+      containerDom.addEventListener("mousedown", handleMouseDown);
+      containerDom.addEventListener("mouseup", function () {
+        console.log("mouseup");
+        containerDom.removeEventListener("mousemove", handleMouseMove);
+        // containerDom.removeEventListener("mousedown", handleMouseDown);
+      });
+
+      function handleMouseDown(event) {
+        target = event;
+        // targetX = target.
+        let { offsetX, offsetY } = getOffsetXY(target);
+        targetX = offsetX;
+        targetY = offsetY;
+        containerDom.addEventListener("mousemove", handleMouseMove);
+      }
+
+      function handleMouseMove(event) {
+        let { offsetX, offsetY } = getOffsetXY(event);
+        // console.log("mousemove", offsetX, offsetY);
+        let tar = target.target;
+        tar.style.position = "relative";
+        tar.style.top = `${offsetY - targetY}px`;
+        tar.style.left = `${offsetX - targetX}px`;
+        tar.style.zIndex = "100";
+        console.log("x", `${offsetX - targetX}px`);
+      }
+
+      function getOffsetXY(target) {
+        let offsetX = target.offsetX,
+          offsetY = target.offsetY,
+          parent = target.target;
+        while (parent !== containerDom) {
+          offsetX += (parent && parent.offsetleft) || 0;
+          offsetY += (parent && parent.offsetTop) || 0;
+          parent = parent.parentNode;
+        }
+        return { offsetX, offsetY };
+      }
+    </script>
+
+    <!-- <script>
+      function handleDragstart(event) {
+        console.log("ondragstart", event);
+      }
+      function handleDragLeave(e) {
+        console.log("ondragleave", e);
+      }
+      function handleDragEnter(e) {
+        console.log("ondragenter", e);
+      }
+      function handleDragOver(e) {
+        console.log("ondragover", e);
+      }
+      function handleDrag(e) {
+        console.log("ondrag", e);
+      }
+      function handleDragEnd(e) {
+        console.log("ondragend", e);
+      }
+    </script> -->
+  </body>
 </html>
